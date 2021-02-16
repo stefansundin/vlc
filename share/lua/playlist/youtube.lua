@@ -508,6 +508,12 @@ function parse()
             arturl = get_arturl()
         end
 
+        local video_id = get_url_param( vlc.path, "v" )
+        if video_id then
+          vlc.msg.info( "video_id: "..video_id )
+          path = path .. "&v=" .. video_id
+        end
+
         return { { path = path; name = title; description = description; artist = artist; arturl = arturl } }
 
     elseif string.match( vlc.path, "/get_video_info%?" ) then -- video info API
